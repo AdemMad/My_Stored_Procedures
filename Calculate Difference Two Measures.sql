@@ -1,5 +1,9 @@
-declare @year_1 int = 2013
-declare @year_2 int = 2015
+create proc my_proc
+@year_1 int,
+@year_2 int
+
+as
+begin
 declare @dimension varchar (50) = 'item_type'
 declare @measure varchar (50) = 'units_sold'
 declare @measure_alias varchar (50) = @dimension
@@ -42,6 +46,6 @@ left join @tab2 b on a.'+@dimension+'=b.'+@dimension+
 ' order by round((((a.'+@measure+'/b.'+@measure+') * 100) - 100) * -1, 0) desc' 
 )
 ;
+end
 
-
-
+exec my_proc 2013, 2017
